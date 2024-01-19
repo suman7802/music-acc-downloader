@@ -1,13 +1,13 @@
 import cors from 'cors';
+import morgan from 'morgan';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import express from 'express';
-import morgan from 'morgan';
 
 import downloadRouter from './routes/download.route.js';
 
 dotenv.config();
-const port = 3000;
+const {PORT} = process.env;
 const app = express();
 
 const isLocal = process.env.NODE_ENV === 'development';
@@ -24,6 +24,6 @@ app.use(express.urlencoded({extended: true}));
 
 app.use('/download', downloadRouter);
 
-app.listen(port, () => {
-  console.log(`Server running on  http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on  http://localhost:${PORT}`);
 });

@@ -23,16 +23,8 @@ const download = {
     }
 
     video.pipe(fs.createWriteStream(filePath));
-    video.on('progress', (chunkLength, downloaded, total) => {
-      let percent = downloaded / total;
-      let transformedPercent = (percent * 100).toFixed(2) + '%';
-      console.log(transformedPercent);
-    });
     video.on('end', () => {
       res.download(filePath);
-      return res.status(200).json({
-        message: 'Downloaded',
-      });
     });
   },
 };
