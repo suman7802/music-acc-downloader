@@ -8,7 +8,7 @@ import downloadRouter from './routes/download.route.js';
 import errorHandler from './controllers/errorHandler.js';
 
 dotenv.config();
-const {PORT} = process.env;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 const isLocal = process.env.NODE_ENV === 'development';
