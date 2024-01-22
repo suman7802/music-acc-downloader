@@ -73,7 +73,6 @@ const download = {
 
       return new Promise((resolve) => {
         writeStream.on('finish', () => {
-          console.log(`Downloaded ${title}`);
           archive.file(filePath, {name: path.basename(filePath)});
           resolve();
         });

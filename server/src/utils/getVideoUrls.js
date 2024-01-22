@@ -22,7 +22,6 @@ async function getAllPlaylistItems(playlistId) {
   let pageToken = null;
   do {
     const response = await getPlaylistItems(playlistId, pageToken);
-    console.log(response.items[0].snippet.resourceId.videoId); // when copy from video
     const items = response.items;
 
     if (items) {
@@ -30,7 +29,6 @@ async function getAllPlaylistItems(playlistId) {
     }
     pageToken = response.nextPageToken;
   } while (pageToken);
-  console.log(allItems[0].snippet.resourceId.videoId); // when copy from share playlist
   return allItems;
 }
 
