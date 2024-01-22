@@ -14,7 +14,7 @@ const app = express();
 const isLocal = process.env.NODE_ENV === 'development';
 
 const corsOptions = {
-  origin: isLocal ? 'http://localhost:3000' : undefined,
+  origin: isLocal ? 'http://localhost:5173' : undefined,
 };
 
 app.use(helmet());

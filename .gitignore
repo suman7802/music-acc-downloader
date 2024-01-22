@@ -1,3 +1,6 @@
 downloaded
 node_modules
 .env
+build
+dist
+.vscode/*
