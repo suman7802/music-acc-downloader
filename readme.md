@@ -1,8 +1,5 @@
 server for download YouTube's music/playlist
 
-To test or use it make sure to create .env file.
-Example is provided as .env.example
-
 - cd ./server
 
   create .env file.
