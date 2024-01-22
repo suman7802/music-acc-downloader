@@ -4,8 +4,8 @@ server for download YouTube's music/playlist
 
   create .env file
 
-  - PORT : 8000 (Recommended PORT 8000)
-  - API_KEY : YouTube_API_KEY
+  - PORT=8000 (Recommended PORT 8000)
+  - API_KEY=YouTube_API_KEY
 
     Get API key from https://console.cloud.google.com/
 
@@ -14,8 +14,8 @@ server for download YouTube's music/playlist
 
 Using Docker Container
 
-- please make sure you have docker and running
-- make sure you are at the dir where dockerfile is present (server dir)
+- please make sure you have docker service running
+- make sure you are at the Dir where dockerfile is present (server Dir)
 
 - docker build -t <any_image_name> .
 - docker run -d -p 8000:8000 <any_image_name>
