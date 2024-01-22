@@ -41,19 +41,35 @@ async function getAllPlaylistItems(playlistId) {
 async function getVideoUrls(playlistId) {
   const playlistItems = await getAllPlaylistItems(playlistId);
 
-  const videoUrls = playlistItems.map((item) => {
-    const videoId = item.snippet.resourceId.videoId;
-    return `https://www.youtube.com/watch?v=${videoId}`;
-  });
+  const videoUrls = playlistItems
+    .map((item) => {
+      const videoId = item.snippet.resourceId.videoId;
+      const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+      const urlParams = new URLSearchParams(new URL(videoUrl).search);
+      if (!urlParams.has('list')) {
+        return videoUrl;
+      }
+    })
+    .filter(Boolean);
+
   return videoUrls;
 }
 
 const download = {
   singleAccFormat: catchAsync(async (req, res) => {
-    const {url} = req.body;
+    const {url} = req.query;
 
     if (!url) {
       throw new customError('Please provide a url', 400);
+    }
+
+    const urlParams = new URLSearchParams(new URL(url).search);
+    if (urlParams.has('list')) {
+      throw new customError(
+        'Please provide a url for a single video, not a playlist',
+        400
+      );
     }
 
     const video = ytdl(url, {
@@ -80,7 +96,7 @@ const download = {
   }),
 
   playlistAccFormat: catchAsync(async (req, res) => {
-    const {url} = req.body;
+    const {url} = req.query;
     if (!url) {
       throw new customError('Please provide a url', 400);
     }
