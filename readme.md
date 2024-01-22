@@ -2,7 +2,7 @@ server for download YouTube's music/playlist
 
 - cd ./server
 
-  create .env file.
+  create .env file
 
   - PORT : 8000 (Recommended PORT 8000)
   - API_KEY : YouTube_API_KEY
