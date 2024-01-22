@@ -12,8 +12,6 @@ const playlistUrl =
   'https://youtube.com/playlist?list=PL5Hz3Wnvr8GCRJGusfAg62Hi9VDc14voJ&si=jbPsTkt-SeCzm2bm';
 const playlistId = new URLSearchParams(new URL(playlistUrl).search).get('list');
 
-console.log('Playlist ID:', playlistId);
-
 async function getPlaylistItems(playlistId, pageToken = null) {
   const response = await youtube.playlistItems.list({
     auth: apiKey,
@@ -29,9 +27,10 @@ async function getPlaylistItems(playlistId, pageToken = null) {
 async function getAllPlaylistItems(playlistId) {
   let allItems = [];
   let pageToken = null;
-
+  console.log(playlistId);
   do {
     const response = await getPlaylistItems(playlistId, pageToken);
+    console.log(response);
     const items = response.items;
     if (items) {
       allItems = allItems.concat(items);

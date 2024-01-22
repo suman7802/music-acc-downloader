@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import express from 'express';
 
 import downloadRouter from './routes/download.route.js';
+import errorHandler from './controllers/errorHandler.js';
 
 dotenv.config();
 const {PORT} = process.env;
@@ -23,6 +24,7 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({extended: true}));
 
 app.use('/download', downloadRouter);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on  http://localhost:${PORT}`);
