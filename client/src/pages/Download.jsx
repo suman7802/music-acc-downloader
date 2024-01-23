@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Button, Container, Form} from 'react-bootstrap';
 import {useLocation, useNavigate} from 'react-router-dom';
 
-const hostURL = import.meta.env.VITE_HOST_URL || 'http://localhost:8000';
+const hostURL = import.meta.env.VITE_HOST_URL;
 
 export default function Download() {
   const location = useLocation();
