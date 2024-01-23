@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import ytdl from 'ytdl-core';
 import archiver from 'archiver';
 
@@ -23,15 +21,8 @@ const download = {
       quality: 'highestaudio',
     });
 
-    const dir = '../downloads';
-    const filePath = path.join(dir, `${title}.aac`);
-
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, {recursive: true});
-
-    video.pipe(fs.createWriteStream(filePath));
-    video.on('end', () => {
-      res.download(filePath);
-    });
+    res.setHeader('Content-Disposition', `attachment; filename="${title}.aac"`);
+    video.pipe(res);
   }),
 
   playlistAccFormat: catchAsync(async (req, res) => {
@@ -42,19 +33,12 @@ const download = {
       throw new customError('Please provide a playlist url', 400);
     }
 
+    const dateAndTime = new Date().toISOString();
     const playlistId = new URLSearchParams(new URL(url).search).get('list');
     const videoUrls = await getVideoUrls(playlistId);
-    const dateAndTime = new Date().toISOString();
-    const dir = `../downloads/playlist${dateAndTime}`;
-
-    const filePaths = [];
-
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, {recursive: true});
-    }
 
     const archive = archiver('zip');
-    res.attachment('songs.zip');
+    res.attachment(`songs-${dateAndTime}.zip`);
     archive.pipe(res);
 
     const promises = videoUrls.map(async (videoUrl) => {
@@ -65,22 +49,25 @@ const download = {
 
       const title = await getTitle(videoUrl);
 
-      const filePath = path.join(dir, `${title}.aac`);
-      filePaths.push(filePath);
+      return new Promise((resolve, reject) => {
+        const chunks = [];
+        video.on('data', (chunk) => {
+          chunks.push(chunk);
+        });
 
-      const writeStream = fs.createWriteStream(filePath);
-      video.pipe(writeStream);
-
-      return new Promise((resolve) => {
-        writeStream.on('finish', () => {
-          archive.file(filePath, {name: path.basename(filePath)});
+        video.on('end', () => {
+          const buffer = Buffer.concat(chunks);
+          archive.append(buffer, {name: `${title}.aac`});
           resolve();
+        });
+
+        video.on('error', (error) => {
+          reject(error);
         });
       });
     });
 
     await Promise.all(promises);
-
     await archive.finalize();
   }),
 };
