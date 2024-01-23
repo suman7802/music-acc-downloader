@@ -7,7 +7,7 @@ export default function Download() {
   const navigate = useNavigate();
   const [url, setUrl] = useState('');
 
-  const isSingleAcc = location.pathname === '/download/singleAcc';
+  const isSingleAAC = location.pathname === '/download/singleAAC';
 
   const handleInputChange = (event) => {
     setUrl(event.target.value);
@@ -23,14 +23,14 @@ export default function Download() {
 
   return (
     <Container className="p-5 text-center">
-      <h1>Download {isSingleAcc ? 'Song' : 'Playlist'}</h1>
+      <h1>Download {isSingleAAC ? 'Song' : 'Playlist'}</h1>
       <Form>
         <Form.Group controlId="url">
           <Form.Label>Paste a URL</Form.Label>
           <Form.Control type="text" value={url} onChange={handleInputChange} />
         </Form.Group>
         <Button variant="primary mt-3" onClick={handleDownload}>
-          Download {isSingleAcc ? 'Song' : 'Playlist'}
+          Download {isSingleAAC ? 'Song' : 'Playlist'}
         </Button>
       </Form>
     </Container>

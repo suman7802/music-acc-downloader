@@ -9,7 +9,7 @@ import sanitizeURL from '../utils/sanitizeUrl.js';
 import getVideoUrls from '../utils/getVideoUrls.js';
 
 const download = {
-  singleAccFormat: catchAsync(async (req, res) => {
+  singleAACFormat: catchAsync(async (req, res) => {
     const {url} = req.query;
     if (!url) throw new customError('Please provide a url', 400);
 
@@ -25,7 +25,7 @@ const download = {
     video.pipe(res);
   }),
 
-  playlistAccFormat: catchAsync(async (req, res) => {
+  playlistAACFormat: catchAsync(async (req, res) => {
     const {url} = req.query;
     if (!url) throw new customError('Please provide a url', 400);
 

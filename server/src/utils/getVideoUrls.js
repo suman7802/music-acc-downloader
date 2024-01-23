@@ -23,7 +23,6 @@ async function getAllPlaylistItems(playlistId) {
   do {
     const response = await getPlaylistItems(playlistId, pageToken);
     const items = response.items;
-
     if (items) {
       allItems = allItems.concat(items);
     }
@@ -34,7 +33,6 @@ async function getAllPlaylistItems(playlistId) {
 
 export default async function getVideoUrls(playlistId) {
   const playlistItems = await getAllPlaylistItems(playlistId);
-
   const videoUrls = playlistItems.map((item) => {
     const videoId = item.snippet.resourceId.videoId;
     return `https://www.youtube.com/watch?v=${videoId}`;

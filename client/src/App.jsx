@@ -12,8 +12,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path='aboutMe' element={<AboutMe />} />
         <Route path="/download">
-          <Route path="singleAcc" element={<Download />} />
-          <Route path="playlistAcc" element={<Download />} />
+          <Route path="singleAAC" element={<Download />} />
+          <Route path="playlistAAC" element={<Download />} />
         </Route>
       </Routes>
     </BrowserRouter>

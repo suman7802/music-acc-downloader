@@ -3,7 +3,7 @@ import download from '../controllers/download.controller.js';
 
 const downloadRouter = express.Router();
 
-downloadRouter.get('/singleAcc', download.singleAccFormat);
-downloadRouter.get('/playlistAcc', download.playlistAccFormat);
+downloadRouter.get('/singleAAC', download.singleAACFormat);
+downloadRouter.get('/playlistAAC', download.playlistAACFormat);
 
 export default downloadRouter;
