@@ -1,0 +1,20 @@
+{
+  "name": "music-aac-downloader",
+  "version": "1.0.0",
+  "description": "Download YouTube's music/playlist on AAC format",
+  "main": "index.js",
+  "scripts": {
+    "client_depends": "cd client && npm install",
+    "server_depends": "cd server && npm install",
+    "install_depends": "npm install concurrently --save-dev && npm run client_depends && npm run server_depends",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run start",
+    "start": "npm run install_depends && concurrently \"npm run client\" \"npm run server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

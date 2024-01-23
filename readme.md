@@ -3,26 +3,18 @@ Download YouTube's music/playlist on AAC format
 create .env file
 Get YouTube_API_KEY from https://console.cloud.google.com/
 
-- cd ./server
-- npm run install
-- npm run start or npm run dev
+- using Node
+  npm run start
 
-- cd ./client
-- npm run install
-- npm run dev
+- Using Docker Container
+  docker-compose up --build
 
-PostMan API
+- Now you are done
+  server http://localhost:8000
+  client http://localhost:5173
 
-- https://documenter.getpostman.com/view/27265804/2s9YymH5H5
+- Navigate to
+  http://localhost:5173
 
-Using Docker Container
-please make sure you have docker service running
-make sure you are at the Root Dir
-
-- docker-compose up --build
-
-Now your docker container should be running on
-server http://localhost:8000
-client http://localhost:5173
-
-- Navigate To http://localhost:5173
+- PostMan API
+  https://documenter.getpostman.com/view/27265804/2s9YymH5H5
