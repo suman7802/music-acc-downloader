@@ -1,6 +1,8 @@
-import {Button, Container, Form} from 'react-bootstrap';
 import {useState} from 'react';
+import {Button, Container, Form} from 'react-bootstrap';
 import {useLocation, useNavigate} from 'react-router-dom';
+
+const hostURL = import.meta.env.VITE_HOST_URL || 'http://localhost:8000';
 
 export default function Download() {
   const location = useLocation();
@@ -18,7 +20,9 @@ export default function Download() {
 
   const handleDownload = () => {
     console.log(`Downloading from URL: ${url}`);
-    window.location.href = `http://localhost:8000${location.pathname}?url=${encodeURIComponent(url)}`;
+    window.location.href = `${hostURL}${
+      location.pathname
+    }?url=${encodeURIComponent(url)}`;
   };
 
   return (
