@@ -6,10 +6,13 @@
   "scripts": {
     "client_depends": "cd client && npm install",
     "server_depends": "cd server && npm install",
-    "install_depends": "npm install concurrently --save-dev && npm run client_depends && npm run server_depends",
+    "install_depends": "npm run client_depends && npm run server_depends",
     "client": "cd client && npm run dev",
     "server": "cd server && npm run start",
-    "start": "npm run install_depends && concurrently \"npm run client\" \"npm run server\""
+    "run_client_server": "npm run client && npm run server",
+    "start": "npm install && npm run install_depends && concurrently \"npm run client\" \"npm run server\"",
+    "build": "npm run install_depends && cd client && npm run build",
+    "live": "npm run server"
   },
   "keywords": [],
   "author": "",
