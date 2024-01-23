@@ -34,5 +34,5 @@ API Documentation
 You can view the API documentation on Postman here.
 
 ```
-  https://documenter.getpostman.com/view/27265804/2s9YymH5H5
+https://documenter.getpostman.com/view/27265804/2s9YymH5H5
 ```
