@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Create a `.env` file inside the `server` directory.
+1. Create a `.env` file inside the `server` and `client` directory.
 
 2. Obtain a `YouTube_API_KEY` from [Google Cloud Console](https://console.cloud.google.com/).
 

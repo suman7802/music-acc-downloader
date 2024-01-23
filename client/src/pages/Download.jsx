@@ -19,7 +19,6 @@ export default function Download() {
   };
 
   const handleDownload = () => {
-    console.log(`Downloading from URL: ${url}`);
     window.location.href = `${hostURL}${
       location.pathname
     }?url=${encodeURIComponent(url)}`;
