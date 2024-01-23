@@ -1,9 +1,11 @@
 Download YouTube's music/playlist on AAC format
 
-create .env file
-Get YouTube_API_KEY from https://console.cloud.google.com/
+- create .env file inside server dir
 
-- using Node
+- Get YouTube_API_KEY from
+  https://console.cloud.google.com/
+
+- using Node on Local machine
   npm run start
 
 - Using Docker Container
